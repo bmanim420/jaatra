@@ -55,7 +55,7 @@
               </div>
               <div class="col-sm-9">
                 <label>Enter Number</label>
-                <input class="form-control" id="inputnum" placeholder="ENTER VALUE">
+                <input class="form-control" id="inputnum" value="inputnum" placeholder="ENTER VALUE">
               </div>
             </div>
            <!-- </div> -->
@@ -93,7 +93,10 @@
         
         var price = $('#price').val();
         var inputnum = $('#inputnum').val();
-        var query = "ticketPrice="+price+"&destination="+destination;
+        var pickup= $('#source').val();
+        var destination= $('#destination').val();
+        
+        var query = "pickup="+pickup+"&destination="+destination;
           $.get("/api/tickets?"+query, function(data, status){
             var html = new EJS({url: '/views/ticket/ticketList.ejs'}).render({tickets:data});
           $("#list").html(html);
