@@ -35,6 +35,36 @@ module.exports.filterList = function(req, res) {
     }
   });
 };
+module.exports.filterLista = function(req, res) {
+  console.log(req.query);
+  Ticket.find({pickup:req.query.pickup,destination:req.query.destination,ticketPrice:{$gt: req.query.ticketPrice}}).populate("bus","capacity enterpriseName busClass").exec(function(err, data) {
+    if (err) {
+      return res.status(400).send({
+
+  				message: errorHandler.getErrorMessage(err)
+  			});
+    } else {
+      console.log("api called");
+
+      res.status(200).send(data);
+    }
+  });
+};
+module.exports.filterListb = function(req, res) {
+  console.log(req.query);
+  Ticket.find({pickup:req.query.pickup,destination:req.query.destination,ticketPrice:{$eq: req.query.ticketPrice}}).populate("bus","capacity enterpriseName busClass").exec(function(err, data) {
+    if (err) {
+      return res.status(400).send({
+
+  				message: errorHandler.getErrorMessage(err)
+  			});
+    } else {
+      console.log("api called");
+
+      res.status(200).send(data);
+    }
+  });
+};
 
 
 
