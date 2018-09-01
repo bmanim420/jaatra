@@ -20,6 +20,23 @@ module.exports.list = function(req, res) {
 };
 
 
+module.exports.filterList = function(req, res) {
+  console.log(req.query);
+  Ticket.find({pickup:req.query.pickup,destination:req.query.destination,ticketPrice:{$lt: req.query.ticketPrice}}).populate("bus","capacity enterpriseName busClass").exec(function(err, data) {
+    if (err) {
+      return res.status(400).send({
+
+  				message: errorHandler.getErrorMessage(err)
+  			});
+    } else {
+      console.log("api called");
+
+      res.status(200).send(data);
+    }
+  });
+};
+
+
 
 
 

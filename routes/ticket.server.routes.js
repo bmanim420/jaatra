@@ -9,9 +9,9 @@ module.exports = function(app){
 	.get(tickets.list)
 	.post(users.requiresLogin, tickets.create);
 	
-	//app.route('/api/ticketfilter')
-	//.get(tickets.list)
-	//.post(users.requiresLogin, tickets.create);
+app.route('/api/filterList')
+	.get(tickets.filterList)
+	.post(users.requiresLogin, tickets.create);
 	
 	app.route('/tickets/search').get(tickets.searchView);
 	

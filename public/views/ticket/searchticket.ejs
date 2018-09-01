@@ -81,6 +81,9 @@
       if($('#filter').val() == $('#nofilter').val()){
    //var price = $('#price').val();
    //var capacity = $('#capacity').val();
+   //var ticketPrice = $('#ticketPrice').val();
+   
+   //var ticketPrice = "{$lt: "+75+"}";
    var pickup= $('#source').val();
    var destination= $('#destination').val();
    var query = "pickup="+pickup+"&destination="+destination;
@@ -92,13 +95,13 @@
       }else if($('#filter').val() == $('#price').val()){
         
         var price = $('#price').val();
-        var ticketPrice = $('#ticketPrice').val();
+        //var ticketPrice = $('#ticketPrice').val();
        
         var pickup= $('#source').val();
         var destination= $('#destination').val();
-        
-        var query = "pickup="+pickup+"&destination="+destination;
-          $.get("/api/tickets?"+query, function(data, status){
+        var ticketPrice = $('#ticketPrice').val();
+        var query = "pickup="+pickup+"&destination="+destination+"&ticketPrice="+ticketPrice;
+          $.get("/api/filterList?"+query, function(data, status){
             var html = new EJS({url: '/views/ticket/ticketList.ejs'}).render({tickets:data});
           $("#list").html(html);
           });
