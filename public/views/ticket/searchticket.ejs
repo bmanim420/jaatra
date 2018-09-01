@@ -97,7 +97,7 @@
         var pickup= $('#source').val();
         var destination= $('#destination').val();
         
-        var query = "ticketPrice={$lt:"+ticketPrice+"}&pickup="+pickup+"&destination="+destination;
+        var query = "pickup="+pickup+"&destination="+destination;
           $.get("/api/tickets?"+query, function(data, status){
             var html = new EJS({url: '/views/ticket/ticketList.ejs'}).render({tickets:data});
           $("#list").html(html);
