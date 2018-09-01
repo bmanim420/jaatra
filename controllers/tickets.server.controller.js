@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Ticket = require('./../models/Ticket.js');
+var Bus = require('./../models/Bus.js');
 var errorHandler = require('./errors.server.controller');
 var _ = require('lodash');
 
@@ -67,6 +68,21 @@ module.exports.filterListb = function(req, res) {
 };
 
 
+module.exports.busList = function(req, res) {
+  console.log(req.query);
+  Ticket.bus.find({pickup:req.query.pickup,destination:req.query.destination,capacity:{$eq: req.query.ticketPrice}}).populate("bus","capacity enterpriseName busClass").exec(function(err, data) {
+    if (err) {
+      return res.status(400).send({
+
+  				message: errorHandler.getErrorMessage(err)
+  			});
+    } else {
+      console.log("api called");
+
+      res.status(200).send(data);
+    }
+  });
+};
 
 
 

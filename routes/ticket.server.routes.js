@@ -20,6 +20,15 @@ app.route('/api/filterLista')
 app.route('/api/filterListb')
 	.get(tickets.filterListb)
 	.post(users.requiresLogin, tickets.create);	
+
+app.route('/api/busList')
+	.get(tickets.busList)
+	.post(users.requiresLogin, tickets.create);	
+	
+	
+	
+	
+	
 	app.route('/tickets/search').get(tickets.searchView);
 	
 		app.route('/tickets/:ticketId').get(tickets.singleTicketView);

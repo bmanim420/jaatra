@@ -6,6 +6,7 @@ module.exports = function(app){
  app.route('/api/buses')
 	.get(buses.list)
 	.post(users.requiresLogin, buses.create);
+
 	
 	app.route('/buses/new').get(buses.createBus);
 	

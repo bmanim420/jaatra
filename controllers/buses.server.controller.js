@@ -18,7 +18,6 @@ module.exports.list = function(req, res) {
   });
 };
 
-
 module.exports.createBus = function(req, res){
   res.render('./../public/views/bus/addBus.ejs', {
     user: req.user || null,
